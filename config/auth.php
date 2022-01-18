@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -37,21 +37,14 @@ return [
     */
 
     'guards' => [
-        'admin'=>[
-            'driver' => 'session',
-            'provider' => 'admin'
-        ],
-        'siswa' => [
-            'driver' => 'session',
-            'provider' => 'siswa',
-        ],
-        'guru' =>[
-            'driver'=>'session',
-            'provider' =>'guru'
-        ],
+
         'web'=>[
             'driver' => 'session',
             'provider' => 'users'
+        ],
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'accounts'
         ]
     ],
 
@@ -73,23 +66,10 @@ return [
     */
 
     'providers' => [
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-        'siswa' =>[
-            'driver' => 'eloquent',
-            'model' => App\Models\Siswa::class,
-        ],
-        'guru' =>[
-            'driver' => 'eloquent',
-            'model' => App\Models\Guru::class,
-        ],
-        'users' =>[
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ]
-
+       'accounts' =>[
+           'driver' => 'eloquent',
+           'model' => App\Models\Account::class,
+       ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

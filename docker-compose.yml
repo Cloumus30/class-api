@@ -1,0 +1,66 @@
+version: '3.0'
+
+services:
+# Database Service
+  db:
+    image: postgres:13.5
+    restart: unless-stopped
+    working_dir: /data/pgsql
+    tty: true
+    ports:
+      - "54329:5432"
+    environment:
+      - POSTGRES_USER=cloudy
+      - POSTGRES_DB=ClassLaravel
+      - POSTGRES_PASSWORD=ciel
+    volumes:
+      - ./dbpgsql:/var/lib/pgsql
+      # - ./pgsql/pg.cnf:etc/pgsql/pg.cnf
+    networks:
+      - class-network
+
+# App Laravel Service
+  app:
+    build: 
+      dockerfile: Dockerfile
+    image: 'laravel'
+    container_name: classapp
+    tty: true
+    environment:
+      SERVICE_NAME: classapp
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www/
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - db
+    networks:
+      - class-network
+
+# Web Server Nginx Services
+  web-server:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./:/var/www/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "8084:80"
+      - "443:443"
+    networks:
+      - class-network
+
+# Docker Networks
+networks:
+  class-network:
+      driver: bridge
+
+#Volumes
+volumes:
+  dbpgsql:
+    driver: local
+  
+  

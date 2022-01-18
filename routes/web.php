@@ -15,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-// Guru Route
-Route::get('/guru',[guruController::class, 'index'])->middleware('auth:guru');
+// // Guru Route
+// Route::get('/guru',[guruController::class, 'index'])->middleware('auth:guru');
 
-Route::get('/login',[loginController::class, 'loginPage'])->name('loginPage');
-Route::get('/login/{guard}', [loginController::class,'loginView']);
-Route::get('/logout', [loginController::class,'logout']);
+// Route::get('/login',[loginController::class, 'loginPage'])->name('loginPage');
+// Route::get('/login/{guard}', [loginController::class,'loginView']);
+// Route::get('/logout', [loginController::class,'logout']);
 
-Route::post('/login/{guard}',[loginController::class, 'authenticate']);
+// Route::post('/login/{guard}',[loginController::class, 'authenticate']);

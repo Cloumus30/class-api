@@ -15,8 +15,11 @@ class CreateKelasTable extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->string('nama_kelas');
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

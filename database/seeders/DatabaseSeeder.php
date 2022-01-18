@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             admin_seeder::class,
             guru_seeder::class,
+            account_seeder::class,
             kelas_seeder::class,
-            role_seeder::class,
             siswa_seeder::class,
         ]);
     }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Siswa;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class siswa_seeder extends Seeder
 {
@@ -17,11 +18,10 @@ class siswa_seeder extends Seeder
     {
         //
         Siswa::create([
+            'uuid' => Str::uuid(),
             'nama'=> 'cloudias',
-            'username' => 'cloudias',
-            'password' => Hash::make('cloudias'),
             'foto' => null,
-            'role_id' => 2,
+            'account_id' => 3,
         ]);
     }
 }

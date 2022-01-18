@@ -15,12 +15,14 @@ class CreateSiswaTable extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->string('nama');
-            $table->string('username',20);
-            $table->string('password');
+            // $table->string('username',20);
+            // $table->string('password');
             $table->string('foto')->nullable(true);
-            $table->integer('role_id');
+            $table->integer('account_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

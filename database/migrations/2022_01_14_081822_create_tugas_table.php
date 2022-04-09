@@ -22,8 +22,8 @@ class CreateTugasTable extends Migration
             $table->integer('nilai');
             $table->boolean('selesai');
             $table->boolean('available');
-            $table->foreignId('kelas_id');
-            $table->foreignId('guru_id');
+            $table->foreignId('kelas_id')->constrained('kelas');
+            $table->foreignId('guru_id')->constrained('guru');
             $table->timestamp('start_at');
             $table->timestamp('end_at');
             $table->timestamps();

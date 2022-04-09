@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class siswa_seeder extends Seeder
+class SiswaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +17,15 @@ class siswa_seeder extends Seeder
      */
     public function run()
     {
-        //
-        Siswa::create([
+        $siswa= [
+            'id' => 1,
             'uuid' => Str::uuid(),
             'nama'=> 'cloudias',
             'foto' => null,
             'account_id' => 3,
-        ]);
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' =>Carbon::now()->toDateTimeString(),
+        ];
+        Siswa::create($siswa);
     }
 }

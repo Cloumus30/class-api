@@ -21,4 +21,8 @@ class Siswa extends Authenticatable
     public function account(){
         return $this->belongsTo(Account::class,'account_id');
     }
+
+    public function absen(){
+        return $this->belongsToMany(Absen::class,'absen_siswa','siswa_id','absen_id');
+    }
 }

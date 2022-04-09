@@ -16,10 +16,7 @@ class CreateGuruTable extends Migration
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->string('nama',50);
-            // $table->string('username',20);
-            $table->string('email');
-            // $table->string('password');
+            $table->string('nama');
             $table->string('foto')->nullable(true);
             $table->integer('account_id');
             $table->timestamps();

@@ -14,12 +14,15 @@ class Guru extends Authenticatable
     protected $fillable =[
         "uuid",
         "nama",
-        "email",
         "foto",
         "account_id",
     ];
 
     public function account(){
         return $this->belongsTo(Account::class,'account_id');
+    }
+
+    public function absen(){
+        return $this->hasMany(Absen::class,'guru_id','id');
     }
 }

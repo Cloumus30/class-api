@@ -17,8 +17,6 @@ class CreateAdminTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('nama');
-            // $table->string('username',20);
-            // $table->string('password');
             $table->string('foto')->nullable(true);
             $table->integer('account_id');
             $table->timestamps();

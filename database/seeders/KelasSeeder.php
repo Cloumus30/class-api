@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use App\Models\Kelas;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-class kelas_seeder extends Seeder
+
+class KelasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +16,6 @@ class kelas_seeder extends Seeder
     public function run()
     {
         //
-        Kelas::create([
-            'uuid' => Str::uuid(),
-            'nama_kelas' => 'kelas IPA X-Mia 1'
-        ]);
+        Kelas::factory()->count(2)->create();
     }
 }

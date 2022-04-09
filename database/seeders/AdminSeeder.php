@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class admin_seeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,11 +18,15 @@ class admin_seeder extends Seeder
     public function run()
     {
         //
-        Admin::create([
+        $admin = [
+            'id' => 1,
             'nama'=>'admin',
             'uuid' => Str::uuid(),
             'foto' => null,
             'account_id' => 1,
-        ]);
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' =>Carbon::now()->toDateTimeString(),
+        ];
+        Admin::insert($admin);
     }
 }

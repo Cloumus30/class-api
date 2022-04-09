@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Guru;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class guru_seeder extends Seeder
+class GuruSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,12 +18,15 @@ class guru_seeder extends Seeder
     public function run()
     {
         //
-        Guru::create([
+        $guru = [
+            'id' => 1,
             'uuid' => Str::uuid(),
             'nama'=>'guru 1',
-            'email' => 'guru@gmail.com',
             'foto' => null,
-            'account_id' => 2
-        ]);
+            'account_id' => 2,
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' =>Carbon::now()->toDateTimeString(),
+        ];
+        Guru::insert($guru);
     }
 }

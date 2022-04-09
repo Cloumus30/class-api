@@ -4,6 +4,7 @@ services:
 # Database Service
   db:
     image: postgres:13.5
+    container_name: postgres_db
     restart: unless-stopped
     working_dir: /data/pgsql
     tty: true
@@ -14,10 +15,28 @@ services:
       - POSTGRES_DB=ClassLaravel
       - POSTGRES_PASSWORD=ciel
     volumes:
-      - ./dbpgsql:/var/lib/pgsql
+      - ./postgresql-data:/var/lib/postgresql/data
+      # - ./dbpgsql:/var/lib/pgsql
       # - ./pgsql/pg.cnf:etc/pgsql/pg.cnf
     networks:
       - class-network
+
+    #   bpos-inventory-service-db-pgsql:
+    # image: postgres:12.0-alpine
+    # container_name: bpos-inventory-service-db-pgsql
+    # working_dir: /data/pgsql
+    # volumes:
+    # - ./postgresql-data:/var/lib/postgresql/data
+    # environment:
+    #   POSTGRES_USER: pguser
+    #   POSTGRES_PASSWORD: bpos_inventory_db2021
+    #   POSTGRES_DB: bpos_inventory_db2021
+    # ports:
+    #   - 54332:5432
+    # restart: always
+    # networks:
+    #   - bpos-inventory-service-network
+
 
 # App Laravel Service
   app:

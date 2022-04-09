@@ -20,9 +20,11 @@ class AbsenResource extends JsonResource
             "deskripsi" => $this->deskripsi,
             "kelas" => new KelasResource($this->kelas),
             "guru" => new GuruResource($this->guru),
-            "available" => $this->available,
-            "start_at" => $this->start_at,
-            "end_at" => $this->end_at,
+            "published" => $this->published,
+            "date_start" => $this->date_start,
+            "date_end" => $this->date_end,
+            "time_start" => $this->time_start,
+            "time_end" => $this->time_end,
         ];
     }
 }

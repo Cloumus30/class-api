@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Absen extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "absen";
 
@@ -17,10 +18,11 @@ class Absen extends Model
         "deskripsi",
         "kelas_id",
         "guru_id",
-        "siswa_id",
-        "available",
-        "start_at",
-        "end_at",
+        "published",
+        "date_start",
+        "date_end",
+        "time_start",
+        "time_end"
     ];
 
     public function kelas(){
@@ -29,5 +31,13 @@ class Absen extends Model
 
     public function guru(){
         return $this->belongsTo(Guru::class,'guru_id','id');
+    }
+
+    public function siswa(){
+        return $this->belongsToMany(Siswa::class,'absen_siswa','absen_id','siswa_id');
+    }
+
+    public function scopeByGuru($query,$guruId){
+        return $query->where('guru_id','=',$guruId);
     }
 }

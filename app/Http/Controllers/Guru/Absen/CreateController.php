@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AbsenResource;
 use App\Models\Absen;
 use App\Models\Account;
+use App\Models\Admin;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -29,9 +31,11 @@ class CreateController extends Controller
                 "deskripsi" => "nullable|string",
                 "kelas_id" => "required|integer",
                 "guru_id" => "required|integer",
-                "available" => "required|boolean",
-                // "start_at" => "required|timestamp",
-                // "end_at" => "required|timestamp"
+                "published" => "required|boolean",
+                "date_start" => "required|date",
+                "date_end" => "required|date",
+                "time_start" => "required",
+                "time_end" => "required"
             ]);
 
             if($validator->fails()){
@@ -53,16 +57,28 @@ class CreateController extends Controller
                     "message" => "Siswa tidak punya Hak",
                 ],400);
             }
-            dd(auth()->user()->username);
+
+            //jika user adalah admin
+            $admin = Admin::where('account_id', auth()->user()->id)->first();
+            if(!is_null($admin)){
+                return response()->json([
+                    "code" => 400,
+                    "message" => "Admin tidak punya Hak",
+                ],400);
+            }
+            
+            // DB::commit();
             $data = Absen::create([
                 "uuid" => Str::uuid(),
                 "nama" => $request->nama,
                 "deskripsi" => $request->deskripsi,
                 "kelas_id" =>$request->kelas_id,
                 "guru_id" => $request->guru_id,
-                "available" => $request->available,
-                "start_at" => $request->start_at,
-                "end_at" => $request->end_at,
+                "published" => $request->published,
+                "date_start" => $request->date_start,
+                "date_end" => $request->date_end,
+                "time_start" => $request->time_start,
+                "time_end" => $request->time_end,
             ]);
 
             return response()->json([

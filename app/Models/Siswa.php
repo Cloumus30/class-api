@@ -12,6 +12,7 @@ class Siswa extends Authenticatable
     protected $table = 'siswa';
 
     protected $fillable=[
+        'id',
         "uuid",
         "nama",
         "foto",

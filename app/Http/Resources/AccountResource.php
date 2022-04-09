@@ -18,10 +18,7 @@ class AccountResource extends JsonResource
         return [
             "uuid" => $this->uuid,
             "username" => $this->username,
-            "siswa" => $this->siswa,
-            "guru" => new GuruResource($this->guru),
-            "siswa" => new SiswaResource($this->siswa),
-            "admin" => new AdminResource($this->admin),
+            "email" => $this->email,
         ];
     }
 }

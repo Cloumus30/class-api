@@ -18,8 +18,8 @@ class GuruResource extends JsonResource
 
         return [
             "uuid" => $this->uuid,
+            'account' => new AccountResource($this->account),
             "nama" => $this->nama,
-            "email" => $this->email,
             "foto" => $this->foto,
         ];
     }

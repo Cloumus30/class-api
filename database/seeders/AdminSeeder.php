@@ -19,7 +19,6 @@ class AdminSeeder extends Seeder
     {
         //
         $admin = [
-            'id' => 1,
             'nama'=>'admin',
             'uuid' => Str::uuid(),
             'foto' => null,
@@ -27,6 +26,6 @@ class AdminSeeder extends Seeder
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' =>Carbon::now()->toDateTimeString(),
         ];
-        Admin::insert($admin);
+        Admin::create($admin);
     }
 }

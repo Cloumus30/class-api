@@ -33,7 +33,8 @@ class AdminAuth
             if(!$admin){
                 return response()->json([
                     'code' => 400,
-                    'error' => "Unauthorized",
+                    'message' => 'Unauthorized',
+                    'error' => "Anda Tidak Memiliki Otoritas",
                 ],400);
             }
             // give admin id through request

@@ -18,7 +18,6 @@ class SiswaSeeder extends Seeder
     public function run()
     {
         $siswa= [
-            'id' => 1,
             'uuid' => Str::uuid(),
             'nama'=> 'cloudias',
             'foto' => null,

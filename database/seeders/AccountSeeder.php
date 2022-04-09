@@ -16,37 +16,35 @@ class AccountSeeder extends Seeder
      */
     public function run()
     {
-        $account = [
-            [
-                'id' => 1,
-                "uuid" => Str::uuid(),
-                "username" => "admin",
-                'email' => 'admin@mail.com',
-                "password" => bcrypt('admin'),
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' =>Carbon::now()->toDateTimeString(),
-            ],
-            [
-                'id' => 2,
-                "uuid" => Str::uuid(),
-                "username" => "guru",
-                'email' => 'guru@mail.com',
-                "password" => bcrypt('guru'),
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' =>Carbon::now()->toDateTimeString(),
-            ],
-            [
-                'id' => 3,
-                "uuid" => Str::uuid(),
-                "username" => "siswa",
-                'email' => 'siswa@mail.com',
-                "password" => bcrypt('siswa'),
-                'created_at' => Carbon::now()->toDateTimeString(),
-                'updated_at' =>Carbon::now()->toDateTimeString(),
-            ]
-        ];
         
+        Account::create(  [
+            
+            "uuid" => Str::uuid(),
+            "username" => "admin",
+            'email' => 'admin@mail.com',
+            "password" => bcrypt('admin'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' =>Carbon::now()->toDateTimeString(),
+        ]);
 
-        Account::insert($account);
+        Account::create( [
+            
+            "uuid" => Str::uuid(),
+            "username" => "guru",
+            'email' => 'guru@mail.com',
+            "password" => bcrypt('guru'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' =>Carbon::now()->toDateTimeString(),
+        ]);
+
+        Account::create( [
+            
+            "uuid" => Str::uuid(),
+            "username" => "siswa",
+            'email' => 'siswa@mail.com',
+            "password" => bcrypt('siswa'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' =>Carbon::now()->toDateTimeString(),
+        ]);
     }
 }

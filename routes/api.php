@@ -26,10 +26,12 @@ Route::prefix('authentication')->group(function(){
     Route::get('/logout','Authentication\Logout\IndexController@logout')->middleware('auth:api');
 });
 
-Route::prefix('admin')->middleware(['auth','auth.admin'])->group(function(){
+Route::prefix('admin')->middleware(['auth.admin'])->group(function(){
     Route::prefix('account')->group(function(){
         Route::prefix('guru')->group(function(){
-            Route::post('/','Admin\Account\Guru\CreateController@store');
+            Route::get('/', 'Admin\Account\GuruController@index');
+            Route::post('/','Admin\Account\GuruController@store');
+            Route::put('/{uuid}','Admin\Account\GuruController@update');
         });
     });
 });

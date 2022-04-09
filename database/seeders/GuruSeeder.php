@@ -19,7 +19,6 @@ class GuruSeeder extends Seeder
     {
         //
         $guru = [
-            'id' => 1,
             'uuid' => Str::uuid(),
             'nama'=>'guru 1',
             'foto' => null,
@@ -27,6 +26,6 @@ class GuruSeeder extends Seeder
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' =>Carbon::now()->toDateTimeString(),
         ];
-        Guru::insert($guru);
+        Guru::create($guru);
     }
 }

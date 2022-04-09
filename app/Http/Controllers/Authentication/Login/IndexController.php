@@ -11,10 +11,6 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class IndexController extends Controller
 {
-    // public function __construct()
-    // {   
-    //     $this->middleware('auth:api',['except' => ['login']]);
-    // }
 
     public function authenticate(Request $request){
         try {
@@ -27,12 +23,14 @@ class IndexController extends Controller
             if($validator->fails()){
                 return response()->json([
                     'code' => 400,
-                    'error' => $validator->errors(),
+                    'error' => $validator->errors()->all(),
                 ],400);
             }
 
             if ($token = auth()->attempt($validator->validated())){
-                // dd(auth()->user()->guru);
+                
+                // check if guru
+
                 return response()->json([
                     "code" => 200,
                     "message" => "Login Success",
@@ -40,7 +38,7 @@ class IndexController extends Controller
                         "Account" => new AccountResource(auth()->user()),
                         "access_token" => $token,
                         "token_type" => 'bearer',
-                        "expires_in" => auth()->factory()->getTTL() * 60 * 5,
+                        "expires_in" => auth()->factory()->getTTL() * 60 * 60,
                     ],
                 ]);
             }
